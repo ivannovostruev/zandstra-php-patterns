@@ -1,0 +1,110 @@
+<?php
+
+namespace patterns\DataMapper;
+
+use PDOStatement;
+
+class VenueMapper extends Mapper
+{
+    protected PDOStatement $selectAllStatement;
+    protected PDOStatement $selectStatement;
+    protected PDOStatement $updateStatement;
+    protected PDOStatement $insertStatement;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->setSelectAllStatement();
+        $this->setSelectStatement();
+        $this->setInsertStatement();
+        $this->setUpdateStatement();
+    }
+
+    protected function setSelectAllStatement(): void
+    {
+        $this->selectAllStatement = self::$PDO->prepare($this->getSelectAllQuery());
+    }
+
+    protected function setSelectStatement(): void
+    {
+        $this->selectStatement = self::$PDO->prepare($this->getSelectQuery());
+    }
+
+    protected function setInsertStatement(): void
+    {
+        $this->insertStatement = self::$PDO->prepare($this->getInsertQuery());
+    }
+
+    protected function setUpdateStatement(): void
+    {
+        $this->updateStatement = self::$PDO->prepare($this->getUpdateQuery());
+    }
+
+    protected function selectStatement(): PDOStatement
+    {
+        return $this->selectStatement;
+    }
+
+    protected function selectAllStatement(): PDOStatement
+    {
+        return $this->selectAllStatement;
+    }
+
+    protected function getSelectAllQuery(): string
+    {
+        return "SELECT * FROM venue";
+    }
+
+    protected function getSelectQuery(): string
+    {
+        return "SELECT * FROM venue WHERE id = ?";
+    }
+
+    protected function getInsertQuery(): string
+    {
+        return "INSERT INTO venue (name) values (?)";
+    }
+
+    protected function getUpdateQuery(): string
+    {
+        return "UPDATE venue SET name = ?, id = ? WHERE id = ?";
+    }
+
+    /**
+     * @param array $raw
+     * @return Collection
+     */
+    public function getCollection(array $raw): Collection
+    {
+        return new VenueCollection($raw, $this);
+    }
+
+    protected function doCreateObject(array $data): DomainObject
+    {
+        $object = new Venue($data['id']);
+        $object->setName($data['name']);
+        $spaceMapper = new SpaceMapper();
+        $spaceCollection = $spaceMapper->findByVenue((int) $data['id']);
+        $object->setSpaces($spaceCollection);
+        return $object;
+    }
+
+    protected function doInsert(DomainObject $object)
+    {
+        $values = [$object->getName()];
+        $this->insertStatement->execute($values);
+        $id = self::$PDO->lastInsertId();
+        $object->setId($id);
+    }
+
+    public function update(DomainObject $object)
+    {
+        $values = [
+            $object->getName(),
+            $object->getId(),
+            $object->getId()
+        ];
+        $this->updateStatement->execute($values);
+    }
+}

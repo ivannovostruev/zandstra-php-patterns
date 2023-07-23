@@ -2,6 +2,4 @@
 
 namespace patterns\Prototype;
 
-class EarthSea extends Sea
-{
-}
+class EarthSea extends Sea {}

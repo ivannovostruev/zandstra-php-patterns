@@ -2,6 +2,8 @@
 
 namespace patterns\PageController;
 
+use Exception;
+
 class AddVenueController extends PageController
 {
     public function process()
@@ -18,7 +20,7 @@ class AddVenueController extends PageController
             }
             $venue = new Venue(null, $name);
             $this->forward('list_venues.php');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->forward('error.php');
         }
     }

@@ -34,10 +34,6 @@ abstract class Mapper
         }
     }
 
-    /**
-     * @param int $id
-     * @return DomainObject|null
-     */
     public function find(int $id): ?DomainObject
     {
         $existObject = $this->getFromMap($id);
@@ -61,10 +57,6 @@ abstract class Mapper
         );
     }
 
-    /**
-     * @param array $data
-     * @return DomainObject
-     */
     public function createObject(array $data): DomainObject
     {
         $existObject = $this->getFromMap($data['id']);

@@ -2,6 +2,4 @@
 
 namespace patterns\Prototype;
 
-class MarsForest extends Forest
-{
-}
+class MarsForest extends Forest {}

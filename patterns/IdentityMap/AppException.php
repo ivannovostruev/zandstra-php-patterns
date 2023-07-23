@@ -2,6 +2,6 @@
 
 namespace patterns\IdentityMap;
 
-class AppException extends \Exception
-{
-}
+use Exception;
+
+class AppException extends Exception {}

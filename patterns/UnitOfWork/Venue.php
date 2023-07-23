@@ -9,10 +9,6 @@ class Venue extends DomainObject
     private ?string $name;
     private ?Collection $spaces;
 
-    /**
-     * @param int|null $id
-     * @param string|null $name
-     */
     public function __construct(?int $id = null, ?string $name = null)
     {
         parent::__construct($id);
@@ -21,18 +17,12 @@ class Venue extends DomainObject
         $this->spaces = self::getCollection(static::class);
     }
 
-    /**
-     * @param SpaceCollection $spaces
-     */
     public function setSpaces(SpaceCollection $spaces): void
     {
         $this->spaces = $spaces;
         $this->markDirty();
     }
 
-    /**
-     * @return Collection
-     */
     public function getSpaces(): Collection
     {
         if (!isset($this->spaces)) {
@@ -42,7 +32,6 @@ class Venue extends DomainObject
     }
 
     /**
-     * @param Space $space
      * @throws Exception
      */
     public function addSpace(Space $space)
@@ -51,18 +40,12 @@ class Venue extends DomainObject
         $space->setVenue($this);
     }
 
-    /**
-     * @param string $name
-     */
     public function setName(string $name): void
     {
         $this->name = $name;
         $this->markDirty();
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;

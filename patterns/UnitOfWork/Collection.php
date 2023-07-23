@@ -14,10 +14,6 @@ abstract class Collection implements Iterator
     private int $pointer = 0;
     private array $objects = [];
 
-    /**
-     * @param array $raw
-     * @param Mapper|null $mapper
-     */
     public function __construct(array $raw = [], Mapper $mapper = null)
     {
         if (!empty($raw) && isset($mapper)) {
@@ -27,10 +23,6 @@ abstract class Collection implements Iterator
         $this->mapper = $mapper;
     }
 
-    /**
-     * @param DomainObject $object
-     * @throws Exception
-     */
     public function add(DomainObject $object): void
     {
         $class = $this->getTargetClass();
@@ -49,10 +41,6 @@ abstract class Collection implements Iterator
         // empty
     }
 
-    /**
-     * @param int $num
-     * @return DomainObject|null
-     */
     private function getRow(int $num): ?DomainObject
     {
         $this->notifyAccess();

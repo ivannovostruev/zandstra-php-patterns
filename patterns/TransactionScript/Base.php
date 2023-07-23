@@ -9,7 +9,6 @@ use PDOStatement;
 class Base
 {
     protected static PDO $db;
-
     protected static array $statements = [];
 
     /**
@@ -26,8 +25,6 @@ class Base
     }
 
     /**
-     * @param string $statement
-     * @return PDOStatement
      * @throws PDOException
      */
     public function prepareStatement(string $statement): PDOStatement
@@ -40,11 +37,6 @@ class Base
         return $stmtHandle;
     }
 
-    /**
-     * @param string $statement
-     * @param array $values
-     * @return PDOStatement
-     */
     public function doStatement(string $statement, array $values): PDOStatement
     {
         $sth = $this->prepareStatement($statement);

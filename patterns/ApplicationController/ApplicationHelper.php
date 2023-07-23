@@ -8,7 +8,6 @@ use patterns\ApplicationController\Controller\ControllerMap;
 class ApplicationHelper
 {
     private static ?self $instance = null;
-
     private string $config = 'options.xml';
 
     private function __construct(){}

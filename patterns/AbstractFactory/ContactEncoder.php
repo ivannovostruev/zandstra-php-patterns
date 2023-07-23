@@ -4,5 +4,5 @@ namespace patterns\AbstractFactory;
 
 abstract class ContactEncoder
 {
-    abstract public function encode();
+    abstract public function encode(): string;
 }

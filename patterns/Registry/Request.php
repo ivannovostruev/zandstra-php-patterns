@@ -2,6 +2,4 @@
 
 namespace patterns\Registry;
 
-class Request
-{
-}
+class Request {}

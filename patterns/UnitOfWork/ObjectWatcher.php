@@ -9,10 +9,8 @@ class ObjectWatcher
     /**
      * Измененные объекты, ожидающие обновления в БД
      * Тут хранятся объекты, которые были изменены после извлечения из БД
-     * @var array
      */
     private array $dirty = [];
-
     private array $new = [];
     private array $delete = [];
 
@@ -29,29 +27,17 @@ class ObjectWatcher
         return self::$instance;
     }
 
-    /**
-     * @param DomainObject $object
-     * @return string
-     */
     public function getGlobalKey(DomainObject $object): string
     {
         return get_class($object) . '.' . $object->getId();
     }
 
-    /**
-     * @param DomainObject $object
-     */
     public static function add(DomainObject $object): void
     {
         $instance = self::getInstance();
         $instance->all[$instance->getGlobalKey($object)] = $object;
     }
 
-    /**
-     * @param string $className
-     * @param int $id
-     * @return DomainObject|null
-     */
     public static function exists(string $className, int $id): ?DomainObject
     {
         $instance = self::getInstance();
@@ -59,18 +45,12 @@ class ObjectWatcher
         return $instance->all[$key] ?? null;
     }
 
-    /**
-     * @param DomainObject $object
-     */
     public static function addDelete(DomainObject $object): void
     {
         $instance = self::getInstance();
         $instance->delete[$instance->getGlobalKey($object)] = $object;
     }
 
-    /**
-     * @param DomainObject $object
-     */
     public static function addDirty(DomainObject $object): void
     {
         $instance = self::getInstance();
@@ -79,9 +59,6 @@ class ObjectWatcher
         }
     }
 
-    /**
-     * @param DomainObject $object
-     */
     public static function addNew(DomainObject $object): void
     {
         $instance = self::getInstance();
@@ -90,14 +67,12 @@ class ObjectWatcher
         $instance->new[] = $object;
     }
 
-    /**
-     * @param DomainObject $object
-     */
     public static function addClean(DomainObject $object): void
     {
         $instance = self::getInstance();
 
         $globalKey = $instance->getGlobalKey($object);
+
         unset($instance->delete[$globalKey]);
         unset($instance->dirty[$globalKey]);
 

@@ -4,9 +4,6 @@ namespace patterns\Visitor;
 
 class TroopCarrierUnit extends CompositeUnit
 {
-    /**
-     * @return int
-     */
     public function bombardStrength(): int
     {
         $total = 0;

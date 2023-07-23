@@ -2,6 +2,4 @@
 
 namespace patterns\Prototype;
 
-class MarsPlains extends Plains
-{
-}
+class MarsPlains extends Plains {}

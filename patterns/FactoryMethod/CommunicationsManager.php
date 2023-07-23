@@ -2,9 +2,9 @@
 
 namespace patterns\FactoryMethod;
 
-abstract class CommsManager
+abstract class CommunicationsManager
 {
     abstract public function getHeaderText(): string;
-    abstract public function getApptEncoder(): ApptEncoder;
+    abstract public function getAppointmentEncoder(): AppointmentEncoder;
     abstract public function getFooterText(): string;
 }

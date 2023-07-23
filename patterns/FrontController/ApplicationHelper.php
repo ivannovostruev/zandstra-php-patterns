@@ -38,6 +38,7 @@ class ApplicationHelper
         $dsn = (string) $options['dsn'];
         $this->ensure(is_array($options), 'Файл конфигурации не является массивом');
         $this->ensure($dsn, 'DSN не найден');
+
         ApplicationRegistry::setDSN($dsn);
     }
 

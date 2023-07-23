@@ -5,9 +5,7 @@ namespace patterns\Registry;
 class ApplicationRegistry extends Registry
 {
     private string $freezeDir = 'data';
-
     private array $values = [];
-
     private array $mtimes = [];
 
     private static ?self $instance = null;
@@ -25,6 +23,7 @@ class ApplicationRegistry extends Registry
     protected function get(string $key)
     {
         $path = $this->freezeDir . DIRECTORY_SEPARATOR . $key;
+
         if (file_exists($path)) {
             clearstatcache();
             $mtime = filemtime($path);
@@ -48,25 +47,16 @@ class ApplicationRegistry extends Registry
         $this->mtimes[$key] = time();
     }
 
-    /**
-     * @param string $dsn
-     */
     public function setDSN(string $dsn): void
     {
         self::getInstance()->set('dsn', $dsn);
     }
 
-    /**
-     * @return string|null
-     */
     public function getDSN(): ?string
     {
         return self::getInstance()->get('dsn');
     }
 
-    /**
-     * @return Request
-     */
     public static function getRequest(): Request
     {
         $instance = self::getInstance();

@@ -5,8 +5,10 @@ use patterns\Facade\ProductFacade;
 
 require_once 'autoload.php';
 
+
 $facade = new ProductFacade('patterns/Facade/test.txt');
 $products = $facade->getProducts();
+
 
 echo '<pre>';
 print_r($products);

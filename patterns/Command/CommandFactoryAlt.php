@@ -4,17 +4,11 @@ namespace patterns\Command;
 
 use Exception;
 
-class CommandFactory
+class CommandFactoryAlt
 {
-    /**
-     * @var string
-     */
     private static string $directory = 'Commands';
 
     /**
-     * @param string $action
-     * @return mixed
-     * @throws CommandNotFoundException
      * @throws Exception
      */
     public static function getCommand(string $action = 'Default'): Command
@@ -33,35 +27,22 @@ class CommandFactory
         return new $fullyQualifiedClassName();
     }
 
-    /**
-     * @param string $action
-     * @return string
-     */
     private static function getUnqualifiedClassName(string $action): string
     {
         return ucfirst(strtolower($action)) . 'Command';
     }
 
-    /**
-     * @param string $unqualifiedClassName
-     * @return string
-     */
     private static function getClassFilename(string $unqualifiedClassName): string
     {
         return self::$directory . DIRECTORY_SEPARATOR . $unqualifiedClassName . '.php';
     }
 
-    /**
-     * @param string $unqualifiedClassName
-     * @return string
-     */
     private static function getFullQualifiedClassName(string $unqualifiedClassName): string
     {
         return '\\' . __NAMESPACE__ . '\\' . self::$directory . '\\' . $unqualifiedClassName;
     }
 
     /**
-     * @param string $action
      * @throws Exception
      */
     private static function guardActionIsCorrect(string $action): void
@@ -71,10 +52,6 @@ class CommandFactory
         }
     }
 
-    /**
-     * @param string $fileName
-     * @throws CommandNotFoundException
-     */
     private static function guardFileIsFound(string $fileName): void
     {
         if (!file_exists($fileName)) {
@@ -82,13 +59,10 @@ class CommandFactory
         }
     }
 
-    /**
-     * @param string $fullyQualifiedClassName
-     * @param string $unqualifiedClassName
-     * @throws CommandNotFoundException
-     */
-    private static function guardClassExists(string $fullyQualifiedClassName, string $unqualifiedClassName): void
-    {
+    private static function guardClassExists(
+        string $fullyQualifiedClassName,
+        string $unqualifiedClassName
+    ): void {
         if (!class_exists($fullyQualifiedClassName)) {
             throw new CommandNotFoundException('Класс ' . $unqualifiedClassName . ' не обнаружен');
         }

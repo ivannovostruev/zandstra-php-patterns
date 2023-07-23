@@ -13,11 +13,6 @@ class VenueManager extends Base
                                         AND start < ?";
     public static string $addEvent = "INSERT INTO event (name, space, start, duration) values (?, ?, ?, ?)";
 
-    /**
-     * @param string $name
-     * @param array $spaces
-     * @return array
-     */
     public function addVenue(string $name, array $spaces): array
     {
         $venueData = [];
@@ -35,6 +30,9 @@ class VenueManager extends Base
         return $venueData;
     }
 
+    /**
+     * @throws AppException
+     */
     public function addEvent(int $spaceId, string $name, int $time, int $duration)
     {
         $values = [$spaceId, $time, ($time + $duration)];

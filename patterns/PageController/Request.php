@@ -5,7 +5,6 @@ namespace patterns\PageController;
 class Request
 {
     private array $properties;
-
     private array $feedback = [];
 
     public function __construct()

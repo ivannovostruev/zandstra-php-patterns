@@ -9,17 +9,11 @@ abstract class CompositeUnit extends Unit
      */
     protected array $units = [];
 
-    /**
-     * @return Unit[]
-     */
     protected function units(): array
     {
         return $this->units;
     }
 
-    /**
-     * @param Unit $unit
-     */
     public function addUnit(Unit $unit): void
     {
         if (in_array($unit, $this->units, true)) {
@@ -29,19 +23,15 @@ abstract class CompositeUnit extends Unit
         $this->units[] = $unit;
     }
 
-    /**
-     * @param Unit $unit
-     */
     public function removeUnit(Unit $unit): void
     {
-        $this->units = array_udiff($this->units, [$unit], function($a, $b) {
-            return $a !== $b ? 1 : 0;
-        });
+        $this->units = array_udiff(
+            $this->units,
+            [$unit],
+            fn($a, $b) => $a !== $b ? 1 : 0
+        );
     }
 
-    /**
-     * @param ArmyVisitor $visitor
-     */
     public function accept(ArmyVisitor $visitor): void
     {
         parent::accept($visitor);

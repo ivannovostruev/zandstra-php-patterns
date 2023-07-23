@@ -28,9 +28,6 @@ class RequestRegistry extends Registry
         $this->values[$key] = $value;
     }
 
-    /**
-     * @return Request
-     */
     public static function getRequest(): Request
     {
         $instance = self::getInstance();

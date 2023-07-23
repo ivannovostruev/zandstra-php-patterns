@@ -2,11 +2,11 @@
 
 namespace patterns\AbstractFactory;
 
-abstract class CommsManager
+abstract class CommunicationsManager
 {
     abstract public function getHeaderText(): string;
-    abstract public function getApptEncoder(): ApptEncoder;
-    abstract public function getTtdEncoder(): TtdEncoder;
+    abstract public function getAppointmentEncoder(): AppointmentEncoder;
+    abstract public function getTaskEncoder(): TaskEncoder;
     abstract public function getContactEncoder(): ContactEncoder;
     abstract public function getFooterText(): string;
 }

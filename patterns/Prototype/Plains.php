@@ -2,6 +2,4 @@
 
 namespace patterns\Prototype;
 
-class Plains
-{
-}
+class Plains {}

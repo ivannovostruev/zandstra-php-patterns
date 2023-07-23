@@ -2,6 +2,4 @@
 
 namespace patterns\Prototype;
 
-class MarsSea extends Sea
-{
-}
+class MarsSea extends Sea {}

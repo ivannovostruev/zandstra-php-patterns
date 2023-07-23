@@ -5,7 +5,6 @@ namespace patterns\FrontController\Request;
 class Request
 {
     private array $properties;
-
     private array $feedback = [];
 
     public function __construct()

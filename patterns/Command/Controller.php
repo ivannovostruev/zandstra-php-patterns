@@ -13,9 +13,6 @@ class Controller
         $this->context = new CommandContext();
     }
 
-    /**
-     * @return CommandContext
-     */
     public function getContext(): CommandContext
     {
         return $this->context;
@@ -36,9 +33,6 @@ class Controller
         }
     }
 
-    /**
-     * @return string
-     */
     private function getAction(): string
     {
         return $this->context->get('action') ?? 'default';

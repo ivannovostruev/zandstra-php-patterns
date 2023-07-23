@@ -4,11 +4,8 @@ namespace patterns\AbstractFactory;
 
 class MegaContactEncoder extends ContactEncoder
 {
-    /**
-     * @return mixed
-     */
-    public function encode()
+    public function encode(): string
     {
-        return 'Данные о контакте закодированы в формате MegaCal<br>';
+        return 'Данные о контакте закодированы в формате MegaCalendar<br>';
     }
 }

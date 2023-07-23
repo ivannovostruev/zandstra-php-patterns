@@ -1,9 +1,15 @@
 <?php
 // Strategy
 
-use patterns\Strategy\{MarkLogicMarker, MatchMarker, RegexMarker, TextQuestion};
+use patterns\Strategy\{
+    MarkLogicMarker,
+    MatchMarker,
+    RegexMarker,
+    TextQuestion
+};
 
 require_once 'autoload.php';
+
 
 $markers = [
     new RegexMarker('/П.ть/u'),

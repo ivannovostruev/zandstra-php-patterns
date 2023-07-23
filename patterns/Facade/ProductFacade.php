@@ -4,13 +4,14 @@ namespace patterns\Facade;
 
 class ProductFacade
 {
-    private string $fileName;
-
+    /**
+     * @var Product[]
+     */
     private array $products = [];
 
-    public function __construct(string $fileName)
-    {
-        $this->fileName = $fileName;
+    public function __construct(
+        private readonly string $fileName
+    ){
         $this->compile();
     }
 
@@ -25,9 +26,6 @@ class ProductFacade
         }
     }
 
-    /**
-     * @return Product[]
-     */
     public function getProducts(): array
     {
         return $this->products;

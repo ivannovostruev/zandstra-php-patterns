@@ -7,11 +7,8 @@ use patterns\ApplicationController\Command\Command;
 class Request
 {
     private array $properties;
-
     private array $feedback = [];
-
     private ?Command $command = null;
-
     private array $objects = [];
 
     public function __construct()
@@ -63,9 +60,6 @@ class Request
         $this->command = $command;
     }
 
-    /**
-     * @return Command|null
-     */
     public function getCommand(): ?Command
     {
         return $this->command;

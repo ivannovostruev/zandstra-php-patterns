@@ -8,6 +8,7 @@ use patterns\Observer\SecurityMonitor;
 
 require_once 'autoload.php';
 
+
 $login = new Login();
 new SecurityMonitor($login);
 new GeneralLogger($login);

@@ -2,6 +2,4 @@
 
 namespace patterns\Prototype;
 
-class Sea
-{
-}
+class Sea {}

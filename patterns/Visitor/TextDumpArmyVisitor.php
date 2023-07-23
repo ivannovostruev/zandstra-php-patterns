@@ -4,14 +4,8 @@ namespace patterns\Visitor;
 
 class TextDumpArmyVisitor extends ArmyVisitor
 {
-    /**
-     * @var string
-     */
     private string $text = '';
 
-    /**
-     * @inheritDoc
-     */
     public function visit(Unit $node): void
     {
         $text = '';
@@ -22,9 +16,6 @@ class TextDumpArmyVisitor extends ArmyVisitor
         $this->text .= $text;
     }
 
-    /**
-     * @return string
-     */
     public function getText(): string
     {
         return $this->text;

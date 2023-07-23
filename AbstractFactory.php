@@ -1,14 +1,15 @@
 <?php
 // AbstractFactory
 
-use patterns\AbstractFactory\BloggsCommsManager;
-use patterns\AbstractFactory\MegaCommsManager;
+use patterns\AbstractFactory\BloggsCommunicationsManager;
+use patterns\AbstractFactory\MegaCommunicationsManager;
 
 require_once 'autoload.php';
 
-$mgr = new MegaCommsManager();
-echo $mgr->getHeaderText();
-echo $mgr->getApptEncoder()->encode();
-echo $mgr->getTtdEncoder()->encode();
-echo $mgr->getContactEncoder()->encode();
-echo $mgr->getFooterText();
+$manager = new MegaCommunicationsManager();
+
+echo $manager->getHeaderText();
+echo $manager->getAppointmentEncoder()->encode();
+echo $manager->getTaskEncoder()->encode();
+echo $manager->getContactEncoder()->encode();
+echo $manager->getFooterText();

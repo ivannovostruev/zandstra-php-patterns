@@ -1,8 +1,4 @@
-<?php
-/**
- * @var \patterns\FrontController\Request\Request $request
- */
-?>
+<?php /** @var \patterns\FrontController\Request\Request $request */?>
 <!doctype html>
 <html lang="ru">
 <head>

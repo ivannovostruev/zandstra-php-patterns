@@ -1,11 +1,12 @@
 <?php
 // FactoryMethod
 
-use patterns\FactoryMethod\BloggsCommsManager;
+use patterns\FactoryMethod\BloggsCommunicationsManager;
 
 require_once 'autoload.php';
 
-$mgr = new BloggsCommsManager();
-echo $mgr->getHeaderText();
-echo $mgr->getApptEncoder()->encode();
-echo $mgr->getFooterText();
+$manager = new BloggsCommunicationsManager();
+
+echo $manager->getHeaderText();
+echo $manager->getAppointmentEncoder()->encode();
+echo $manager->getFooterText();

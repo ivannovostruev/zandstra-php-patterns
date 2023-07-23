@@ -4,9 +4,6 @@ namespace patterns\Composite;
 
 class Army extends CompositeUnit
 {
-    /**
-     * @return int
-     */
     public function bombardStrength(): int
     {
         $total = 0;

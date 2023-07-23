@@ -18,12 +18,12 @@ class Preferences
         return self::$instance;
     }
 
-    public function setProperty($key, $value)
+    public function setProperty($key, $value): void
     {
         $this->properties[$key] = $value;
     }
 
-    public function getProperty($key)
+    public function getProperty($key): mixed
     {
         return $this->properties[$key] ?? null;
     }

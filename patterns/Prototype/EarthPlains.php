@@ -2,6 +2,4 @@
 
 namespace patterns\Prototype;
 
-class EarthPlains extends Plains
-{
-}
+class EarthPlains extends Plains {}

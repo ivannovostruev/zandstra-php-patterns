@@ -4,12 +4,9 @@ namespace patterns\Strategy;
 
 abstract class Marker
 {
-    protected $test;
+    public function __construct(
+        protected string $test
+    ){}
 
-    public function __construct($test)
-    {
-        $this->test = $test;
-    }
-
-    abstract public function mark($response);
+    abstract public function mark($response): mixed;
 }

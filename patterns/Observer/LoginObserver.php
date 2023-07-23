@@ -7,15 +7,12 @@ use SplSubject;
 
 abstract class LoginObserver implements SplObserver
 {
-    private Login $login;
-
-    public function __construct(Login $login)
+    public function __construct(private readonly Login $login)
     {
-        $this->login = $login;
         $login->attach($this);
     }
 
-    public function update(SplSubject $subject)
+    public function update(SplSubject $subject): void
     {
         if ($subject === $this->login) {
             $this->doUpdate($subject);

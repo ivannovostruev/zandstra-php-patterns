@@ -8,57 +8,36 @@ use SplSubject;
 
 class Login implements SplSubject
 {
-    const LOGIN_USER_UNKNOWN = 1;
-    const LOGIN_WRONG_PASS = 2;
-    const LOGIN_ACCESS = 3;
+    const LOGIN_USER_UNKNOWN    = 1;
+    const LOGIN_WRONG_PASS      = 2;
+    const LOGIN_ACCESS          = 3;
 
-    /**
-     * @var SplObjectStorage
-     */
     private SplObjectStorage $storage;
 
-    /**
-     * @var array
-     */
     private array $status = [];
 
-    /**
-     * Login constructor.
-     */
     public function __construct()
     {
         $this->storage = new SplObjectStorage();
     }
 
-    /**
-     * @param SplObserver $observer
-     */
-    public function attach(SplObserver $observer)
+    public function attach(SplObserver $observer): void
     {
         $this->storage->attach($observer);
     }
 
-    /**
-     * @param SplObserver $observer
-     */
-    public function detach(SplObserver $observer)
+    public function detach(SplObserver $observer): void
     {
         $this->storage->detach($observer);
     }
 
-    public function notify()
+    public function notify(): void
     {
         foreach ($this->storage as $observer) {
             $observer->update($this);
         }
     }
 
-    /**
-     * @param $user
-     * @param $pass
-     * @param $ip
-     * @return bool
-     */
     public function handleLogin($user, $pass, $ip): bool
     {
         $isValid = false;
@@ -80,31 +59,13 @@ class Login implements SplSubject
         return $isValid;
     }
 
-    /**
-     * @return array
-     */
     public function getStatus(): array
     {
         return $this->status;
     }
 
-    /**
-     * @param $status
-     * @param $user
-     * @param $ip
-     */
     private function setStatus($status, $user, $ip): void
     {
         $this->status = [$status, $user, $ip];
     }
 }
-
-
-
-
-
-
-
-
-
-
